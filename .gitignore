@@ -1,0 +1,7 @@
+#certs...
+*.pem
+
+#visual studio code editor...
+.vscode
+
+

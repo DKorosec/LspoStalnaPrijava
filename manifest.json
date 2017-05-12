@@ -1,0 +1,20 @@
+//https://developer.chrome.com/extensions/manifest
+{
+  "manifest_version": 2,
+
+  "name": "LSPO vaje stalna prijava",
+  "description": "Ta razširitev omogoča da vas sistem LSPO na vaje.um.si ne odjavi po določenemu času!",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "permissions": [
+    "tabs",
+    "https://vaje.um.si/*",
+    "https://vaje.uni-mb.si/*"
+  ]
+}
