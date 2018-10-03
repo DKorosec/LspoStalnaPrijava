@@ -2,23 +2,25 @@ const second = 1000;
 const variate = second * 10;
 
 function httpGetAsync(url, callback) {
-  let xmlHttp = new XMLHttpRequest();
+  const xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = () => {
-    if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-      callback(xmlHttp.responseText);
+    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+      return callback(xmlHttp.responseText);
+    }
   }
   xmlHttp.open('GET', url, true);
   xmlHttp.send(null);
 }
 
 function trySendRequestLoop() {
-  let time = second * 50 + Math.floor(Math.random() * variate);
+  // 50 seconds + [0, 10) seconds
+  const time = second * 50 + Math.floor(Math.random() * variate);
   chrome.tabs.query({
-  }, (tabs) => {
-    for (let tab of tabs) {
-      let url = tab.url;
+  }, tabs => {
+    for (const tab of tabs) {
+      const url = tab.url;
       if (url.includes('vaje.um.si') || url.includes('vaje.uni-mb.si')) {
-        httpGetAsync('https://vaje.um.si/vaje/new/vaje.jsp', (data) => console.log('ping send!'));
+        httpGetAsync('https://vaje.um.si/vaje/new/vaje.jsp', () => console.log('ping send!'));
         return;
       }
     }
